@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Repositories\Criterias;
 use App\Repositories\ClipRepository;
 use App\Http\Controllers\Controller;
@@ -20,7 +20,7 @@ class ClipController extends Controller
         $this->clipRepository = $clipRepository;
     }
 
-    public function show(Requests\ShowClipRequest $request)
+    public function show(Request $request)
     {
         $this->clipRepository->pushCriteria(new Criterias\Active());
 
