@@ -13,10 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-
-Route::prefix('clips')->namespace('api')->group(function () {
-    Route::get('{clip_id}', 'ClipController@show');
-    Route::get('/', 'ClipController@index');
+Route::namespace('api')->group(function () {
+    Route::prefix('curators')->group(function () {
+        Route::get('{curator_id}', 'CuratorController@show');
+        Route::get('/', 'CuratorController@index');
+    });
+    Route::prefix('clips')->group(function () {
+        Route::get('{clip_id}', 'ClipController@show');
+        Route::get('/', 'ClipController@index');
+    });
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
