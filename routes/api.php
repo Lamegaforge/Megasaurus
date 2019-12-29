@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
+
+Route::prefix('clips')->namespace('api')->group(function () {
+    Route::get('{clip_id}', 'ClipController@show');
+    Route::get('/', 'ClipController@index');
+});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

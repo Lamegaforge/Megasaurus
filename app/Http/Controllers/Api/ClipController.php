@@ -20,6 +20,15 @@ class ClipController extends Controller
         $this->clipRepository = $clipRepository;
     }
 
+    public function index(Request $request)
+    {
+        $this->clipRepository->pushCriteria(new Criterias\Active());
+        
+        $clips = $this->clipRepository->paginate($limit = 10, $columns = ['*']);        
+
+        return $this->response->withPaginator($clips, new ClipTransformer);
+    }
+
     public function show(Request $request)
     {
         $this->clipRepository->pushCriteria(new Criterias\Active());
