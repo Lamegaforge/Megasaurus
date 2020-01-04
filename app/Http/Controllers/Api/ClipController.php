@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Gate;
 use Illuminate\Http\Request;
 use App\Repositories\Criterias;
 use App\Repositories\ClipRepository;
@@ -22,16 +23,20 @@ class ClipController extends Controller
 
     public function index(Request $request)
     {
-        $this->clipRepository->pushCriteria(new Criterias\Active());
-        
-        $clips = $this->clipRepository->paginate($limit = 10, $columns = ['*']);        
+        if (Gate::none('access-deactivated-clips')) {
+            $this->clipRepository->pushCriteria(new Criterias\Active());
+        }
+
+        $clips = $this->clipRepository->paginate($limit = 10, $columns = ['*']);
 
         return $this->response->withPaginator($clips, new ClipTransformer);
     }
 
     public function show(Request $request)
     {
-        $this->clipRepository->pushCriteria(new Criterias\Active());
+        if (Gate::none('access-deactivated-clips')) {
+            $this->clipRepository->pushCriteria(new Criterias\Active());
+        }
 
         $clip = $this->clipRepository->find($request->clip_id);
 
