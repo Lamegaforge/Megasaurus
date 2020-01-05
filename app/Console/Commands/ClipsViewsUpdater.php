@@ -8,6 +8,7 @@ use App\Repositories\Criterias;
 use Illuminate\Console\Command;
 use App\Repositories\ClipRepository;
 use App\Managers\Twitch\TwitchManager;
+use Illuminate\Database\Eloquent\Collection;
 
 class ClipsViewsUpdater extends Command
 {
@@ -56,14 +57,14 @@ class ClipsViewsUpdater extends Command
         }
     }
 
-    protected function getAllClips()
+    protected function getAllClips() :Collection
     {
         $this->clipRepository->pushCriteria(new Criterias\Active());
 
         return $this->clipRepository->all();
     }
 
-    protected function getViews(Clip $clip)
+    protected function getViews(Clip $clip) :int
     {
         $clip = app(TwitchManager::class)->driver('api')->get($clip->slug);
 
