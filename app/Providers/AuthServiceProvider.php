@@ -30,7 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('access-deactivated-clips', function (?User $user) {
-            return app(PermissionService::class)->check($user, 'access-deactivated-clips');
+            return ($user) ? app(PermissionService::class)->check($user, 'access-deactivated-clips') : false;
         });            
     }
 }
