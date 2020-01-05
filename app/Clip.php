@@ -14,6 +14,7 @@ class Clip extends Model
         'url',
         'game',
         'curator_id',
+        'views',
     ];
 
     public function curator()

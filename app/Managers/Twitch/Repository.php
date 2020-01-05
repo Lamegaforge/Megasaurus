@@ -22,4 +22,11 @@ class Repository
 
         return $this->former->clips($clips);
     }
+
+    public function get(string $slug) :array
+    {
+        $clip = $this->driver->get($slug);
+
+        return $this->former->clip($clip);
+    }    
 }

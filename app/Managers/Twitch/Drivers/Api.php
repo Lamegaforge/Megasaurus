@@ -23,6 +23,15 @@ class Api implements Driver
         return $response['clips'];
     }
 
+    public function get(string $slug) :array
+    {
+        $client = $this->getClient();
+
+        $response = $client->getClip($slug);
+
+        return $response;
+    }    
+
     protected function getClient() :TwitchApi
     {
         $options = [
