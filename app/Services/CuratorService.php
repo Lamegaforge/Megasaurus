@@ -18,10 +18,10 @@ class CuratorService
     {
         $curator = $this->curatorRepository->findByField('tracking_id', $trackingId);
 
-        if (! $curator) {
+        if ($curator->isEmpty()) {
             $curator = $this->curatorRepository->create($attributes);
         }
 
-        return $curator;
+        return $curator->first();
     }
 }

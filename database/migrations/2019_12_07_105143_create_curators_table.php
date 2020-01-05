@@ -14,7 +14,7 @@ class CreateCuratorsTable extends Migration
     public function up()
     {
         Schema::create('curators', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('tracking_id')->unique();
             $table->string('name');
             $table->string('display_name');

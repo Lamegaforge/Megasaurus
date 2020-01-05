@@ -19,7 +19,7 @@ class ClipService
     {
         $clip = $this->clipRepository->findByField('tracking_id', $trackingId);
 
-        return (bool) $clip;
+        return ! $clip->isEmpty();
     }
 
     public function store(array $attributes, Curator $curator) :Clip
