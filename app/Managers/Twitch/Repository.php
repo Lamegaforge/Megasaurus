@@ -7,8 +7,8 @@ use App\Managers\Twitch\Contracts\Former;
 
 class Repository
 {
-    protected Driver $driver;
-    protected Former $former;
+    protected $driver;
+    protected $former;
 
     public function __construct(Driver $driver, Former $former)
     {
