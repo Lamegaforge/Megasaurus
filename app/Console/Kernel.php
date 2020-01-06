@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\ClipsAggregator;
+use App\Console\Commands\ApplicationReset;
 use App\Console\Commands\ClipsViewsUpdater;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -17,6 +18,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         ClipsAggregator::class,
         ClipsViewsUpdater::class,
+        ApplicationReset::class,
     ];
 
     /**
