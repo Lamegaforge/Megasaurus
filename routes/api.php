@@ -20,6 +20,7 @@ Route::namespace('api')->group(function () {
     });
     Route::prefix('clips')->group(function () {
         Route::get('{clip_id}', 'ClipController@show');
+        Route::post('{clip_id}/visibility', 'ClipController@updateVisibility');
         Route::get('/', 'ClipController@index');
     });
 });

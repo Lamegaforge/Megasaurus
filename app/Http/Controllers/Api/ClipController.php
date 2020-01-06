@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use Gate;
+use Event;
 use Illuminate\Http\Request;
 use App\Repositories\Criterias;
 use App\Repositories\ClipRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Transformers\ClipTransformer;
+use App\Events\ClipVisibilityHasBeenUpdated;
+use App\Http\Requests\UpdateClipVisibilityRequest;
 use EllipseSynergie\ApiResponse\Contracts\Response;
 
 class ClipController extends Controller
@@ -42,4 +45,15 @@ class ClipController extends Controller
 
         return $this->response->withItem($clip, new ClipTransformer);
     }
+
+    public function updateVisibilty(UpdateClipVisibilityRequest $request)
+    {
+        $clip = $this->clipRepository->update([
+            'active' => (bool) $request->visibility,
+        ], $request->clip_id);
+
+        Event::dispatch(new ClipVisibilityHasBeenUpdated($clip));
+
+        return $this->response->withItem($clip, new ClipTransformer);
+    }    
 }
