@@ -1,3 +1,5 @@
+{{--Hello le monde !--}}
+
 @extends('layouts.app')
 
 @section('content')

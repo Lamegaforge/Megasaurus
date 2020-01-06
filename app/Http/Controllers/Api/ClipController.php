@@ -35,7 +35,7 @@ class ClipController extends Controller
     public function show(Request $request)
     {
         if (Gate::none('access-deactivated-clips')) {
-            $this->clipRepository->pushCriteria(new Criterias\Active());
+//            $this->clipRepository->pushCriteria(new Criterias\Active());
         }
 
         $clip = $this->clipRepository->find($request->clip_id);

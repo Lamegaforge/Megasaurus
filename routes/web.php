@@ -11,4 +11,12 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Auth::routes();
+
+Route::namespace('Site')->group(function () {
+    Route::post('/login', 'HomeController@login')->name('login');
+
+    Route::get('/', 'HomeController@home')->name('home');
+});
