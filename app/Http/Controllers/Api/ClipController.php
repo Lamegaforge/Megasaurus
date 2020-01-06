@@ -46,7 +46,7 @@ class ClipController extends Controller
         return $this->response->withItem($clip, new ClipTransformer);
     }
 
-    public function updateVisibilty(UpdateClipVisibilityRequest $request)
+    public function updateVisibility(UpdateClipVisibilityRequest $request)
     {
         $clip = $this->clipRepository->update([
             'active' => (bool) $request->visibility,
