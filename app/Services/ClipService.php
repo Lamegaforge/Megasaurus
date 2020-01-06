@@ -30,4 +30,11 @@ class ClipService
 
         return $clip;
     }
+
+    public function updateViews(Clip $clip, int $views)
+    {
+        $this->clipRepository->update([
+            'views' => $views,
+        ], $clip->id);
+    }
 }
