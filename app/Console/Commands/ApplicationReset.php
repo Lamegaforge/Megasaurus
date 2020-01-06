@@ -18,7 +18,7 @@ class ApplicationReset extends Command
      *
      * @var string
      */
-    protected $description = '';
+    protected $description = 'Reset database application';
 
     /**
      * Create a new command instance.
