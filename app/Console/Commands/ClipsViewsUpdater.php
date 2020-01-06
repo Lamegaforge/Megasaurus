@@ -53,7 +53,7 @@ class ClipsViewsUpdater extends Command
 
             $views = $this->getViews($clip);
 
-            app(ClipService::class)->updateViews($clip, $views);
+            $this->update($clip, $views);
         }
     }
 
@@ -69,5 +69,12 @@ class ClipsViewsUpdater extends Command
         $clip = app(TwitchManager::class)->driver('api')->get($clip->slug);
 
         return $clip['views'];
+    }
+
+    protected function update(Clip $clip, int $views)
+    {
+        $this->clipRepository->update([
+            'views' => $views,
+        ], $clip->id);        
     }
 }

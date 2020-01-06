@@ -23,6 +23,7 @@ class CreateClipsTable extends Migration
             $table->string('thumbnail')->nullable();
             $table->string('url')->unique();
             $table->boolean('active')->default(false);
+            $table->unsignedBigInteger('views')->nullable();
             $table->timestamp('approved_at')->nullable();            
             $table->timestamps();
 
