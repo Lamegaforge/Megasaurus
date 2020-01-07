@@ -23,6 +23,7 @@ class Api implements Former
             'url' => $clip['url'],
             'game' => $clip['game'],
             'views' => $clip['views'],
+            'thumbnail' => $clip['thumbnails']['medium'],
             'curator' => [
                 'tracking_id' => $clip['curator']['id'],    
                 'name' => $clip['curator']['name'],    

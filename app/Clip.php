@@ -16,6 +16,7 @@ class Clip extends Model
         'curator_id',
         'views',
         'active',
+        'thumbnail',
     ];
 
     public function curator()
