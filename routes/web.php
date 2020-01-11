@@ -13,6 +13,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::view('clips', 'clips.index');
+Route::view('clip/1', 'clips.show');
+
 Auth::routes();
 
 Route::namespace('Site')->group(function () {
