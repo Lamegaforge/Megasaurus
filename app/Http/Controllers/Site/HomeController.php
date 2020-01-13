@@ -2,36 +2,73 @@
 
 namespace App\Http\Controllers\Site;
 
-use App\Services\LoginService;
-use Illuminate\Http\Request;
+use App\Providers\TwitchServiceProvider;
+use Exception;
 use Illuminate\Routing\Controller;
+use Illuminate\HTTP\Request;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class HomeController extends Controller
 {
+    /** @var TwitchServiceProvider $provider */
+    private $provider;
 
-    private $loginService;
-
-    public function __construct(LoginService $loginService)
+    public function __construct()
     {
-        $this->loginService = $loginService;
+        $this->provider = new TwitchServiceProvider([
+            'clientId' => env('TWITCH_CLIENT_ID'),
+            'clientSecret' => env('TWITCH_CLIENT_SECRET'),
+            'redirectUri' => 'http://megasaurus.test:8080/',
+        ]);
     }
 
     /**
-     * Show the application dashboard.
+     * Megasaurus'Home
+     *
+     * @param Request $request
+     * @return Redirector|View
+     */
+    public function home(Request $request)
+    {
+        if ($request->isMethod('GET') && $request->has('code')) {
+            if (!$request->has('state') || (session('state') && $request->get('state') !== session('state'))) {
+                if (session('state')) {
+                    Session::remove('state');
+                }
+                dd('Invalid state');
+            } else {
+                try {
+                    $accessToken = $this->provider->getAccessToken('authorization_code', ['code' => $request->get('code')]);
+                    $this->provider->registerLoggedUser($accessToken);
+                    $user = $this->provider->getLoggedUser();
+                    // You can now create authenticated API requests through the provider.
+                    //$request = $provider->getAuthenticatedRequest(
+                    //    'GET',
+                    //    'https://api.twitch.tv/kraken/user',
+                    //    $accessToken
+                    //);
+
+                    return view('home', ['user' => $user]);
+                } catch (Exception $e) {
+                    exit('Caught exception: ' . $e->getMessage());
+                }
+            }
+        }
+
+        return redirect('login');
+    }
+
+    /**
+     * OAuth Login to Twitch
      *
      * @return View
      */
-    public function home()
+    public function login()
     {
-        return view('login');
-    }
-
-    public function login(Request $request)
-    {
-        if ($request->isMethod('POST')) {
-            $this->loginService->login();
-        }
-//        return view('login');
+        $url = $this->provider->getAuthorizationUrl();
+        Session::put('state', $this->provider->getState());
+        return view('login', ['url' => $url]);
     }
 }
