@@ -11,15 +11,10 @@
 |
 */
 
-use Illuminate\Support\Facades\Route;
-
-Route::view('clips', 'clips.index');
+Route::view('clips', 'clips.index')->name('login');
 Route::view('clip/1', 'clips.show');
 
-//Auth::routes();
-
-Route::namespace('Site')->group(function () {
-    Route::get('/login', 'HomeController@login')->name('login');
-
-    Route::get('/', 'HomeController@home')->name('home');
+Route::prefix('oauth')->group(function () {
+    Route::get('login', 'OauthController@login')->name('oauth.login');
+    Route::get('consume', 'OauthController@consume')->name('oauth.consume');
 });
