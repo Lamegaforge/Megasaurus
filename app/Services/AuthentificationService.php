@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Auth;
+use Event;
 use App\User;
 use App\Repositories\UserRepository;
 use App\Events\UserHasJustBeenCreated;
@@ -17,7 +18,7 @@ class AuthentificationService
         $this->userRepository = $userRepository;
     }
 
-    public function loginByResource(ResourceOwnerInterface $resourceOwner)
+    public function getUserByResource(ResourceOwnerInterface $resourceOwner) :User
     {
         $concretUser = $this->retrieveConcretUser($resourceOwner);
 
@@ -27,7 +28,7 @@ class AuthentificationService
             $user = $this->createUser($concretUser);
         }
 
-        Auth::login($user->first());
+        return $user->first();
     }
 
     protected function retrieveConcretUser(ResourceOwnerInterface $resourceOwner) :array
@@ -48,7 +49,7 @@ class AuthentificationService
 
         $user = $this->userRepository->create($attributes);
 
-        Event::fire(new UserHasJustBeenCreated($user));
+        Event::dispatch(new UserHasJustBeenCreated($user));
 
         return $user;
     }

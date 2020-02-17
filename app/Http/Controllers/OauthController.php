@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use View;
+use Redirect;
 use Illuminate\Routing\Controller;
 use App\Managers\Oauth\OauthManager;
 use App\Services\AuthentificationService;
@@ -25,6 +27,10 @@ class OauthController extends Controller
 
         $resourceOwner = app(OauthManager::class)->driver('helix')->consume($request->get('code'));
 
-        app(AuthentificationService::class)->loginByResource($resourceOwner);
+        $user = app(AuthentificationService::class)->getUserByResource($resourceOwner);
+
+        Auth::login($user);
+
+        return Redirect::route('home');
     }
 }

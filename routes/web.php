@@ -11,10 +11,9 @@
 |
 */
 
-Route::view('clips', 'clips.index')->name('login');
-Route::view('clip/1', 'clips.show');
+Route::view('/', 'home')->name('home');
 
-Route::prefix('oauth')->group(function () {
+Route::prefix('oauth')->middleware('guest')->group(function () {
     Route::get('login', 'OauthController@login')->name('oauth.login');
     Route::get('consume', 'OauthController@consume')->name('oauth.consume');
 });

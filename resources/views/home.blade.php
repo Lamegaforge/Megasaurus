@@ -1,26 +1,10 @@
-{{--Hello le monde !--}}
-
 @extends('layouts.app')
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Dashboard</div>
-                    <div class="card-body">
-                        @if (session('state'))
-                            <table>
-                                @foreach($user as $k => $data)
-                                    <tr>
-                                        <th>{{ $k }}</th>
-                                        <td>{{ $data }}</td>
-                                    </tr>
-                                @endforeach
-                            </table>
-                        @endif
-                    </div>
-                </div>
+                {{Auth::user()->display_name}}
             </div>
         </div>
     </div>
