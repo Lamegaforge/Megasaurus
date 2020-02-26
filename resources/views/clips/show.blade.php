@@ -1,5 +1,8 @@
 @extends('layouts.base')
 
+@section('title', 'qsdqsdqs')
+@section('body', 'fixed-navbar page-lg')
+
 @section('content')
 <div class="site-content" role="main">
     <nav class="bg-white" aria-label="breadcrumb">
@@ -19,7 +22,7 @@
         <img class="background" src="https://img.youtube.com/vi/LDzYR5_TR2o/maxresdefault.jpg" alt="">
         <div class="container">
             <div class="embed-responsive embed-responsive-16by9">
-                <iframe src="https://clips.twitch.tv/embed?clip=KitschySucculentTroutVoHiYo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>                
+                <iframe src="https://www.youtube.com/embed/stUSvDY7uVU?rel=0&amp;showinfo=0&amp;autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
         </div>
     </section>
