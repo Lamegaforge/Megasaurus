@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Curator;
+use App\Game;
 use Prettus\Repository\Eloquent\BaseRepository;
 
-class CuratorRepository extends BaseRepository {
+class GameRepository extends BaseRepository {
 
     /**
      * Specify Model class name
@@ -14,6 +14,6 @@ class CuratorRepository extends BaseRepository {
      */
     function model()
     {
-        return Curator::class;
+        return Game::class;
     }
 }
