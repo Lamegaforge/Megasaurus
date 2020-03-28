@@ -7,6 +7,7 @@
 	<title>@yield('body')</title>
 	<!-- css: theme -->
 	<link rel="stylesheet" href="css/theme.min.css">
+	@livewireStyles
 </head>
 <body class="@yield('body')">
 	<div class="site">
@@ -21,5 +22,6 @@
 	<!-- js: vendor -->
 	<script src="js/vendor.js"></script>
 	<script src="js/theme.min.js"></script>
+	@livewireScripts
 </body>
 </html>

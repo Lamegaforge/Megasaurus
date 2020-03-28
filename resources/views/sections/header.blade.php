@@ -4,7 +4,7 @@
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<i class="ya ya-bar"></i>
 			</button>
-			<a class="navbar-brand" href="/">Gameforest</a>
+			<a class="navbar-brand" href="/">LAMEGAFORGE</a>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav">
 					<li class="nav-item dropdown">
@@ -18,7 +18,7 @@
 							<a class="dropdown-item" href="home-videos.html">Videos</a>
 						</div>
 					</li>
-					<li class="nav-item dropdown">
+{{-- 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="blog.html" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="blog.html">List</a>
@@ -244,7 +244,7 @@
 							<a class="dropdown-item" href="shop-cart.html">Cart Overview</a>
 							<a class="dropdown-item" href="shop-checkout.html">Checkout</a>
 						</div>
-					</li>
+					</li> --}}
 				</ul>
 			</div>
 			<!-- end .navbar-collapse -->
@@ -262,7 +262,7 @@
 						<span class="d-inline-block d-md-none"><i class="ya ya-user"></i></span>
 					</a>
 				</li>
-				<li class="nav-item dropdown dropdown-cart d-block">
+{{-- 				<li class="nav-item dropdown dropdown-cart d-block">
 					<a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="ya ya-shopping-cart"></i>
 						<span class="badge badge-warning"></span>
@@ -310,7 +310,7 @@
 							</div>
 						</div>
 					</div>
-				</li>
+				</li> --}}
 				<li class="nav-item"><a class="nav-link toggle-search" href="#"><i class="ya ya-search"></i></a></li>
 			</ul>
 			<!-- end .navbar-nav -->

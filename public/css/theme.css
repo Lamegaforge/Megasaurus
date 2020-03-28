@@ -15218,7 +15218,6 @@ section > .divider path {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: 55px 0 0;
   font-size: 0.9375rem;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.45);

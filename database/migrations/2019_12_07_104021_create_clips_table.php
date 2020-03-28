@@ -16,7 +16,7 @@ class CreateClipsTable extends Migration
         Schema::create('clips', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('curator_id');
-            $table->unsignedBigInteger('game_id');
+            // $table->unsignedBigInteger('game_id');
             $table->unsignedBigInteger('tracking_id')->unique();
             $table->string('slug');
             $table->string('game')->nullable();
@@ -29,7 +29,7 @@ class CreateClipsTable extends Migration
             $table->timestamps();
 
             $table->foreign('curator_id')->references('id')->on('curators');
-            $table->foreign('game_id')->references('id')->on('games');
+            // $table->foreign('game_id')->references('id')->on('games');
         });
     }
 
